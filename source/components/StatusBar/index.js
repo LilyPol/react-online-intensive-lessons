@@ -15,7 +15,7 @@ export default class StatusBar extends Component {
                         <span>{context.currentUserFirstName}</span>
                         &nbsp; 
                         <span>{context.currentUserLastName}</span>
-                    </button>
+                    </button>                    
                 </section>
             )}
         </Consumer>    
