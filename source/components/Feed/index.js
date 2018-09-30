@@ -38,7 +38,7 @@ export default class Feed extends Component {
 
         return (        
         <section className = {Styles.feed}>        
-            <Spinner isSpinning />            
+            <Spinner isSpinning = {isSpinning} />            
             <StatusBar />            
             <Composer />
             {postsJSX}
