@@ -31,8 +31,8 @@ export default class Feed extends Component {
         //      
         console.log('2 Feed isSpinning=',this.state.showSpinning)
         setTimeout(() => this.setState({
-            showSpinning: !this.state.isSpinning
-        }), 15000)
+            showSpinning: !this.state.showSpinning
+        }), 5000)
         console.log('3 Feed isSpinning=',this.state.showSpinning)                      
         //
 
