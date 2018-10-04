@@ -83,7 +83,8 @@ export default class Feed extends Component {
     }
     
     render() {
-        const {posts, isPostsFetching} = this.state;              
+        const {posts, isPostsFetching} = this.state;
+        console.log('Feed this.state', this.state);
         
         const postsJSX = posts.map((post) => {            
             return <Post key = {post.id} {...post} _likePost = {this._likePost} />;
