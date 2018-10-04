@@ -13,32 +13,19 @@ export default class Feed extends Component {
             {id: '123', comment: 'Hi there!', created: 1526825076849},
             {id: '456', comment: 'Приветик!', created: 1526825077500} 
         ],
-        showSpinning: false //
+        isSpinning: false 
     };   
     
     render() {
         const {posts} = this.state; 
-        const {showSpinning} = this.state; //
-        
-        console.log('1 Feed this.state=',this.state);        
-        console.log('1 Feed isSpinning=',showSpinning)
-
+        const {isSpinning} = this.state;        
         const postsJSX = posts.map((post) => {
-            //console.log('Feed post.isSpinning=',post.isSpinning);
             return <Post key = {post.id} {...post} />;
         });
-
-        //      
-        console.log('2 Feed isSpinning=',this.state.showSpinning)
-        setTimeout(() => this.setState({
-            showSpinning: !this.state.showSpinning
-        }), 5000)
-        console.log('3 Feed isSpinning=',this.state.showSpinning)                      
-        //
-
+        
         return (        
         <section className = {Styles.feed}>        
-            <Spinner isSpinning = {showSpinning} />            
+            <Spinner isSpinning = {isSpinning} />            
             <StatusBar />            
             <Composer />
             {postsJSX}
