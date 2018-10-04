@@ -97,8 +97,6 @@ export default class Like extends Component {
     }
 
     render () {
-        console.log('this.props', this.props);
-
         const likeStyles = this._getLikeStyle();
         const likersList = this._getLikersList();
         const likesDescription = this._getLikesDescription();
