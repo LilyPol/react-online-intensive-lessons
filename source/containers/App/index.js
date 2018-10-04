@@ -11,14 +11,14 @@ import avatar from 'theme/assets/lisa';
 const options = {
     avatar,
     currentUserFirstName: 'Lisa',
-    currentUserLastName: 'Simpson',
+    currentUserLastName:  'Simpson',
 };
 
 export default class App extends Component {
     render () {
         return (
             <Provider value = { options }>
-                <Feed {...options}/>
+                <Feed { ...options } />
             </Provider>
         );
     }

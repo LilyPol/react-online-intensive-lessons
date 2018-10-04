@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
-import {func, string, number, array} from 'prop-types';
+import { func, string, number, array } from 'prop-types';
 
 import Like from 'components/Like';
 import { Consumer } from 'components/HOC/withProfile';
@@ -17,29 +17,30 @@ export default class Post extends Component {
     }
 
     render () {
-      const {comment, created, _likePost, id, likes} = this.props;
+        const { comment, created, _likePost, id, likes } = this.props;
 
-    return (            
-        <Consumer>
-            {(context) => (
-                <section className = {Styles.post}>
-                    <span className = {Styles.cross} 
-                          _likePost = {_likePost} 
-                          id = {id} 
-                    />
-                    <img src = {context.avatar} />
-                    <a>{`${context.currentUserFirstName} ${context.currentUserLastName}`}</a>
-                    <time>{moment.unix(created).format('MMMM DD h:mm:ss a')}</time>
-                    <p>{comment}</p>
-                    <Like 
-                        _likePost = {_likePost} 
-                        id = {id} 
-                        likes = {likes} 
-                        {...context} 
-                    />
-                </section>
-            )}
-        </Consumer>
+        return (            
+            <Consumer>
+                {(context) => (
+                    <section className = { Styles.post }>
+                        <span 
+                            _likePost = { _likePost }                             
+                            className = { Styles.cross } 
+                            id = { id }                             
+                        />
+                        <img src = { context.avatar } />
+                        <a>{`${context.currentUserFirstName} ${context.currentUserLastName}`}</a>
+                        <time>{moment.unix(created).format('MMMM DD h:mm:ss a')}</time>
+                        <p>{comment}</p>
+                        <Like 
+                            _likePost = { _likePost } 
+                            id = { id } 
+                            likes = { likes } 
+                            { ...context } 
+                        />
+                    </section>
+                )}
+            </Consumer>
         );
     }
 }
