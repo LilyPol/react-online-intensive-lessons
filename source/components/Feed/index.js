@@ -17,10 +17,7 @@ import { socket } from 'socket/init';
 @withProfile
 export default class Feed extends Component {
     state = {
-        posts: [
-            /*{ id: '123', comment: 'Hi there!', created: 1526825076849, likes: [] },
-            { id: '456', comment: 'Приветик!', created: 1526825077500, likes: [] } */
-        ],
+        posts: [],
         isSpinning: false,
     };
 
@@ -77,9 +74,7 @@ export default class Feed extends Component {
             method: 'GET',            
         });       
 
-        const {data: posts} = await response.json();
-
-        console.log('-> fetched posts', posts)
+        const {data: posts} = await response.json();        
 
         this.setState({
             posts,
@@ -146,9 +141,7 @@ export default class Feed extends Component {
     } 
 
     render () {
-        const { posts, isSpinning } = this.state;
-
-        console.log('-> this.state', this.state)
+        const { posts, isSpinning } = this.state;        
 
         const postsJSX = posts.map((post) => {            
             return (
