@@ -16,9 +16,9 @@ export default class Catcher extends Component {
         console.log('ERROR:', error);
         console.log('STACKTRACE:', stack.componentStack);
 
-        this.setState({
+        /*this.setState({
             error: true,
-        });
+        });*/
     }
 
     render () {

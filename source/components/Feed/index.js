@@ -9,22 +9,59 @@ import Post from 'components/Post';
 import Spinner from 'components/Spinner';
 
 import Styles from './styles.m.css';
-import { getUniqueID } from 'instruments';
-import { api, TOKEN } from 'config/api';
-import { delay } from '../../instruments';
+//import { getUniqueID } from 'instruments';
+import { api, TOKEN, GROUP_ID } from 'config/api';
+import { socket } from 'socket/init';
+//import { delay } from '../../instruments';
 
 @withProfile
 export default class Feed extends Component {
     state = {
         posts: [
-            { id: '123', comment: 'Hi there!', created: 1526825076849, likes: [] },
-            { id: '456', comment: 'Приветик!', created: 1526825077500, likes: [] } 
+            /*{ id: '123', comment: 'Hi there!', created: 1526825076849, likes: [] },
+            { id: '456', comment: 'Приветик!', created: 1526825077500, likes: [] } */
         ],
         isSpinning: false,
     };
 
     componentDidMount () {
+        const { currentUserFirstName,currentUserLastName } = this.props;
         this._fetchPosts();
+        //this.refetch = setInterval(this._fetchPosts, 1000);
+
+        socket.emit('join', GROUP_ID);
+
+        socket.on('create', (postJSON) => {
+            const { data: createdPost, meta } = JSON.parse(postJSON);
+
+            if (
+                `${currentUserFirstName} ${currentUserLastName}` !==
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
+                this.setState(({ posts }) => ({
+                    posts: [createdPost, ...posts],
+                }));
+            }
+        });
+
+        socket.on('remove', (postJSON) => {
+            const { data: createdPost, meta } = JSON.parse(postJSON);
+
+            if (
+                `${currentUserFirstName} ${currentUserLastName}` !==
+                `${meta.authorFirstName} ${meta.authorLastName}`
+            ) {
+                this.setState(({ posts }) => ({
+                    posts: posts.filter( (post) => post.id !== removedPost.id),
+                }));
+            }
+        });
+    }
+
+    componentWillUnmount () {
+        //clearInterval(this.refetch);
+        socket.removeListener('create');
+        socket.removeListener('remove');
     }
 
     _setPostsFetchingState = (state) => {
@@ -77,47 +114,29 @@ export default class Feed extends Component {
         }));
     }
 
-     _likePost = async (id) => {
-        //const { currentUserFirstName, currentUserLastName } = this.props;
-
+     _likePost = async (id) => {      
         this._setPostsFetchingState(true);
         
-        /*const posts = this.state.posts.map(post => {
-                if (post.id === id) {
-                    return {
-                        ...post,
-                        likes: [
-                        {
-                            id:        getUniqueID(),
-                            firstName: currentUserFirstName,
-                            lastName:  currentUserLastName,
-                        }
-                    ]
-                }
-            }
-
-            return post;
-        });      */
-
-        const response = await fetch({api}, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: TOKEN
-            },
-            body: JSON.stringify({ comment }),
+        const response = await fetch(`${api}/${id}`, {
+            method: 'PUT',
+            headers: {                
+                Authorization: TOKEN,
+            },            
         });
 
-        this.setState({
-            posts:           newPosts,
-            isSpinning:      false,
-        });
-    }
+        const { data: likedPost } = await response.json();
+
+        this.setState(({ posts }) => ({
+            posts: posts.map(post => post.id === likedPost.id ? likedPost : post,
+            ),
+            isSpinning: false,                
+        }));                    
+    };
     
      _removePost = async (id) => {
         this._setPostsFetchingState(true);        
 
-        await delay(1200);
+        //await delay(1200);
                 
         this.setState(({ posts }) => ({            
             posts:      posts.filter((post) => post.id !== id),

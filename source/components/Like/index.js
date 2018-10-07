@@ -46,7 +46,7 @@ export default class Like extends Component {
 
         return likes.some(({ firstName, lastName }) => {
             return (`${firstName} ${lastName}` === 
-                    `${currentUserFirstName}${currentUserLastName}`
+                    `${currentUserFirstName} ${currentUserLastName}`
             );
         });
     }
@@ -64,7 +64,7 @@ export default class Like extends Component {
         const { likes } = this.props;
 
         const likesJSX = likes.map(({ firstName, lastName, id }) => (
-            <li key = { id }>{`$ {firstNmae} ${lastName}`}</li>
+            <li key = { id }> {firstName} {lastName}</li>
         ));
 
         return likes.length && showLikers ? <ul>{likesJSX}</ul> : null;
@@ -73,7 +73,7 @@ export default class Like extends Component {
     _getLikesDescription = () => {
         const { likes, currentUserLastName, currentUserFirstName } = this.props;
 
-        const likedByMe = this._getLikedByMe();
+        const likedByMe = this._getLikedByMe();       
         
         if (likes.length === 1 && likedByMe) {
             return `${currentUserFirstName} ${currentUserLastName}`;
