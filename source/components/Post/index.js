@@ -26,7 +26,16 @@ export default class Post extends Component {
     }
 
     render () {
-        const { avatar, currentUserFirstName, currentUserLastName, comment, created, _likePost, id, likes } = this.props;
+        const { 
+            avatar, 
+            currentUserFirstName, 
+            currentUserLastName, 
+            comment, 
+            created, 
+            _likePost, 
+            id, 
+            likes 
+        } = this.props;
 
         return (            
                 <section className = { Styles.post }>
