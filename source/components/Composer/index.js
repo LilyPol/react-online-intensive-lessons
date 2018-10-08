@@ -71,4 +71,4 @@ class Composer extends Component {
     } 
 }
 
-export default withProfile(Composer);
+export default Composer;
