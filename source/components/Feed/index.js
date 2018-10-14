@@ -153,28 +153,29 @@ export default class Feed extends Component {
     };
 
     _animatePostmanEnter = (postman) => {
-        fromTo(
+        fromTo (
             postman, 
             1, 
             { opacity: 0, right: "-250px" }, 
             { 
                 opacity: 1, 
                 right: "50px",
-                onComplete: () => 
-                {
-                    setTimeout(                    
-                        function() {
-                        fromTo(
-                        postman, 
-                        1, 
-                        { opacity: 0, right:"50px" }, 
-                        { 
-                            opacity: 1, 
-                            right:"-250px"                        
-                    })}
-                    , 4000);
+                onComplete: () => {                
+                    setTimeout (                    
+                        function () {
+                            fromTo (
+                            postman, 
+                            1, 
+                            { opacity: 0, right:"50px" }, 
+                            { 
+                                opacity: 1, 
+                                right:"-250px"                        
+                            })}
+                        , 4000
+                    );
                 }
-         });
+            }
+        );
     }; 
     
     render () {
