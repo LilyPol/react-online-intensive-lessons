@@ -13,12 +13,13 @@ import Postman from 'components/Postman';
 import Styles from './styles.m.css';
 import { api, TOKEN, GROUP_ID } from 'config/api';
 import { socket } from 'socket/init';
+import { delay } from '../../instruments';
 
 @withProfile
 export default class Feed extends Component {
     state = {
         posts: [],
-        isSpinning: false,
+        isSpinning: false,        
     };
 
     componentDidMount () {
@@ -144,7 +145,6 @@ export default class Feed extends Component {
     };
     
     _animateComposerEnter = (composer) => {
-        console.log('composer', composer);
         fromTo(
             composer, 
             1, 
@@ -153,29 +153,32 @@ export default class Feed extends Component {
     };
 
     _animatePostmanEnter = (postman) => {
-        console.log('postman', postman);
         fromTo(
             postman, 
             1, 
-            { opacity: 0, right: "0px" }, 
+            { opacity: 0, right: "-250px" }, 
             { 
                 opacity: 1, 
-                right: "50px", 
-                //onComplete: () => 
+                right: "50px",
+                onComplete: () => 
+                {
+                    setTimeout(                    
+                        function() {
+                        fromTo(
+                        postman, 
+                        1, 
+                        { opacity: 0, right:"50px" }, 
+                        { 
+                            opacity: 1, 
+                            right:"-250px"                        
+                    })}
+                    , 4000);
+                }
          });
     }; 
     
-    /*_animatePostmanEntering = (postman) => {
-        console.log('postman', postman);
-        fromTo(
-            postman, 
-            1, 
-            { opacity: 0, right:"50px" }, 
-            { opacity: 1, right:"0px" });
-    };*/     
-
     render () {
-        const { posts, isSpinning } = this.state;        
+        const { posts, isSpinning } = this.state;               
 
         const postsJSX = posts.map((post) => {            
             return (
@@ -200,16 +203,15 @@ export default class Feed extends Component {
                     onEnter = { this._animateComposerEnter }                                        
                     >
                     <Composer _createPost = { this._createPost } />
-                </Transition>
+                </Transition>                
                 <Transition
                     in
                     appear
                     timeout = { 4000 }
-                    onEnter = { this._animatePostmanEnter }                                        
-                    //onEntering = { this._animatePostmanEntering }
+                    onEnter = { this._animatePostmanEnter }                                                            
                     >                
                     <Postman _createPost = { this._createPost }  />
-                </Transition>
+                </Transition>                
                 {postsJSX}
             </section>
         );

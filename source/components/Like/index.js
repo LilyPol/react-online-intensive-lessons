@@ -43,12 +43,12 @@ export default class Like extends Component {
 
     _getLikedByMe = () => {
         const { currentUserFirstName, currentUserLastName, likes } = this.props;
-
+        
         return likes.some(({ firstName, lastName }) => {
             return (`${firstName} ${lastName}` === 
                     `${currentUserFirstName} ${currentUserLastName}`
             );
-        });
+        });    
     }
 
     _getLikeStyle = () => {
