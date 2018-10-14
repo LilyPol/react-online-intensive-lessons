@@ -164,13 +164,13 @@ export default class Feed extends Component {
                     setTimeout (                    
                         function () {
                             fromTo (
-                            postman, 
-                            1, 
-                            { opacity: 0, right:"50px" }, 
-                            { 
-                                opacity: 1, 
-                                right:"-250px"                        
-                            })}
+                                postman, 
+                                1, 
+                                { opacity: 0, right:"50px" }, 
+                                { 
+                                    opacity: 1, 
+                                    right:"-250px"                        
+                                })}
                         , 4000
                     );
                 }
