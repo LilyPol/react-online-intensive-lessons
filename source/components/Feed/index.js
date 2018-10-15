@@ -211,7 +211,7 @@ export default class Feed extends Component {
                     timeout = { 4000 }
                     onEnter = { this._animatePostmanEnter }                                                            
                     >                
-                    <Postman _createPost = { this._createPost }  />
+                    <Postman _createPost = { this._createPost } />
                 </Transition>                
                 {postsJSX}
             </section>

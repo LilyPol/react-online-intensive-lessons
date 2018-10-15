@@ -35,6 +35,7 @@ export default class Post extends Component {
     }
 
     render () {
+        console.log('this.props',this.props);
         const { avatar, 
                 firstName, 
                 lastName, 
