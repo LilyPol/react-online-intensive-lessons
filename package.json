@@ -20,7 +20,7 @@
         "soundcheck": "jest --config=\"./jest/jest.config.json\"",
         "prettier": "prettier-eslint --list-different \"./source/**/*.js\"; prettier-eslint --write \"./source/**/*.js\"",
         "deploy": "run-s build:prod-github gh-pages",
-        "gh-pages": "gh-pages -d build"
+        "gh-pages": "gh-pages -d build"        
     },
     "dependencies": {
         "classnames": "~2.2.6",
@@ -64,7 +64,7 @@
         "html-webpack-plugin": "~3.2.0",
         "html-webpack-template": "~6.2.0",
         "identity-obj-proxy": "~3.0.0",
-        "jest": "~23.4.1",
+        "jest": "~23.4.1",        
         "jest-runner-eslint": "~0.6.0",
         "jest-runner-stylelint": "~1.0.0",
         "mini-css-extract-plugin": "~0.4.1",
