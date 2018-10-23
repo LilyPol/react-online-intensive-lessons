@@ -42,8 +42,8 @@ describe('instruments:', () => {
     });
 
     test('getFullApiUrl function should throw, when called with non-string type one of arguments', () => {
-        expect(() => getFullApiUrl('GROUP_ID', 2)).toThrow();
-        expect(() => getFullApiUrl(2, 'api')).toThrow();        
+        expect(() => getFullApiUrl(2, 'GROUP_ID')).toThrow();
+        expect(() => getFullApiUrl('api', 2)).toThrow();        
     });
 
     test('getFullApiUrl function should throw, when called without arguments', () => {       
@@ -51,6 +51,6 @@ describe('instruments:', () => {
     });
 
     test('getFullApiUrl function should throw, when called without arguments', () => {       
-        expect(getFullApiUrl('GROUP_ID', 'api')).toBe('GROUP_ID/api');        
+        expect(getFullApiUrl('api', 'GROUP_ID')).toBe('api/GROUP_ID');        
     });    
 })
