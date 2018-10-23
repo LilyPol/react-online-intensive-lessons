@@ -49,4 +49,8 @@ describe('instruments:', () => {
     test('getFullApiUrl function should throw, when called without arguments', () => {       
         expect(() => getFullApiUrl()).toThrow();
     });
+
+    test('getFullApiUrl function should throw, when called without arguments', () => {       
+        expect(getFullApiUrl('GROUP_ID', 'api')).toBe('GROUP_ID/api');        
+    });    
 })
