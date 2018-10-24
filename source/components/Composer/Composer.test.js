@@ -3,7 +3,9 @@ import { mount } from 'enzyme';
 import { Composer } from './';
 
 const props = {
-    _createPost: jest.fn(),
+    _createPost:            jest.fn(),
+    _updateComment:         jest.fn(),
+    _submitOnEnter:         jest.fn(),
 };
 
 const comment = 'Merry christmas!';
@@ -90,5 +92,13 @@ describe('Composer component:', () => {
     test('_submitComment and _handleFormSubmit class methods should be invoked once after form submitted', () => {
         expect(_submitCommentSpy).toHaveBeenCalledTimes(1);
         expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);
-    })
+    });
+    
+    test('_updateComment prop should be invoked once after form submission', () => {
+        expect(props._updateComment).toHaveBeenCalledTimes(0);
+    });
+
+    test('_submitOnEnter prop should be invoked once after form submission', () => {
+        expect(props._submitOnEnter).toHaveBeenCalledTimes(0);
+    });
 });

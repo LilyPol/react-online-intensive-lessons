@@ -8,6 +8,8 @@ import Styles from './styles.m.css';
 export class Composer extends Component {
     static propTypes = {
         _createPost:            func.isRequired,
+        _updateComment:         func.isRequired,
+        _submitOnEnter:         func.isRequired,
     };
 
     state = {
