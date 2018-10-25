@@ -6,6 +6,8 @@ const props = {
     _createPost:            jest.fn(),
     _updateComment:         jest.fn(),
     _submitOnEnter:         jest.fn(),
+    _submitComment:         jest.fn(),
+    _handleFormSubmit:      jest.fn(),
 };
 
 const comment = 'Merry christmas!';
@@ -100,5 +102,13 @@ describe('Composer component:', () => {
 
     test('_submitOnEnter prop should be invoked once after form submission', () => {
         expect(props._submitOnEnter).toHaveBeenCalledTimes(0);
+    });
+
+    test('_submitComment prop should be invoked once after form submission', () => {
+        expect(props._submitComment).toHaveBeenCalledTimes(0);
+    });
+
+    test('_handleFormSubmit prop should be invoked once after form submission', () => {
+        expect(props._handleFormSubmit).toHaveBeenCalledTimes(0);
     });
 });
