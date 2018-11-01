@@ -22,8 +22,8 @@ export default class App extends Component {
         this.state = {            
                 avatar,
                 access:               true,
-                currentUserFirstName: 'Лилия',//'Дмитрий',
-                currentUserLastName:  'Полежаева',//'Вакациенко',
+                currentUserFirstName: 'Лилия',
+                currentUserLastName:  'Полежаева',
                 _logout:              this._logout,
             };
         }
