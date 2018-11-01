@@ -14,33 +14,50 @@ import Login from 'components/Login';
 //Instruments
 import avatar from 'theme/assets/lisa';
 
-const options = {
-    avatar,
-    currentUserFirstName: 'Лилия',//'Дмитрий',
-    currentUserLastName:  'Полежаева',//'Вакациенко',
-};
-
 @hot(module)
 export default class App extends Component {
-    state = {
-        access: false,
+    constructor () {
+        super ();
+
+        this.state = {            
+                avatar,
+                access:               true,
+                currentUserFirstName: 'Лилия',//'Дмитрий',
+                currentUserLastName:  'Полежаева',//'Вакациенко',
+                _logout:              this._logout,
+            };
+        }
+
+    _login = () => {
+        this.setState({
+            access: true,
+        });
     };
 
+    _logout = () => {
+        this.setState({
+            access: false,
+        });
+    };
 
 
     render () {
         const { access } = this.state;
-        console.log('access App',access);
 
         return (
             <Catcher>                
-                <Provider value = { options }>
+                <Provider value = { this.state }>
                     <StatusBar />
                     <Switch>
-                        <Route component = { Login } path = '/login' />
+                        <Route
+                            path = '/login'
+                            render = { (props) => ( <Login _login = { this._login } { ...props } /> )}
+                        />
+
+                        { !access && <Redirect to = '/login' /> }
                         <Route component = { Feed } path = '/feed' />                    
-                        {access && <Route component = { Profile } path = '/profile' />}
-                        <Redirect to = '/login' />
+                        <Route component = { Profile } path = '/profile' />
+                        <Redirect to = '/feed' />
                     </Switch>
                 </Provider>
             </Catcher>

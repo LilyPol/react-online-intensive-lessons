@@ -5,18 +5,22 @@ import { withProfile } from 'components/HOC/withProfile';
 import Styles from './styles.m.css';
 
 @withProfile
-export default class Login extends Component {    
+export default class Login extends Component {
+    constructor () {
+        super ();
+
+         this.state = {                    
+                access:               false,                
+            }; 
+        }
+        
     _handleFormSubmit  = () => {        
         this.setState({
             access: true,
-        });
+        });       
     };
 
     render () {
-        //const { access } = this.state;
-        console.log('access Login this.state',this.state);
-        console.log('access Login this.props',this.props);
-
         return (
                 <section className = { Styles.login }>                    
                     <form onSubmit = { this._handleFormSubmit }>                          
