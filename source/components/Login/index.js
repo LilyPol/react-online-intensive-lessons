@@ -21,12 +21,12 @@ export default class Login extends Component {
     };
 
     render () {
-        return (
+        return (            
                 <section className = { Styles.login }>                    
                     <form onSubmit = { this._handleFormSubmit }>                          
                         <input type = 'submit' value = '    Войти    ' />
                     </form>
-                </section>                
+                </section>                            
         );        
     }
 }

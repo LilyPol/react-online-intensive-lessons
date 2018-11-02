@@ -48,17 +48,23 @@ export default class App extends Component {
             <Catcher>                
                 <Provider value = { this.state }>
                     <StatusBar />
+
+                    {!access &&
                     <Switch>
+                        {
                         <Route
                             path = '/login'
                             render = { (props) => ( <Login _login = { this._login } { ...props } /> )}
-                        />
+                        />}
+                    </Switch>}
 
-                        { !access && <Redirect to = '/login' /> }
+                    {access &&
+                    <Switch>                        
                         <Route component = { Feed } path = '/feed' />                    
                         <Route component = { Profile } path = '/profile' />
-                        <Redirect to = '/feed' />
-                    </Switch>
+                        <Redirect to = '/login' />
+                        }
+                    </Switch>}
                 </Provider>
             </Catcher>
         );
