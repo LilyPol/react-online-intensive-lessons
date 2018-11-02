@@ -50,20 +50,18 @@ export default class App extends Component {
                     <StatusBar />
 
                     {!access &&
-                    <Switch>
-                        {
+                    <Switch>                        
                         <Route
                             path = '/login'
                             render = { (props) => ( <Login _login = { this._login } { ...props } /> )}
-                        />}
+                        />
                     </Switch>}
 
                     {access &&
                     <Switch>                        
                         <Route component = { Feed } path = '/feed' />                    
                         <Route component = { Profile } path = '/profile' />
-                        <Redirect to = '/login' />
-                        }
+                        <Redirect to = '/login' />                        
                     </Switch>}
                 </Provider>
             </Catcher>
