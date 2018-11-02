@@ -21,7 +21,7 @@ export default class App extends Component {
 
         this.state = {            
                 avatar,
-                access:               true,
+                access:               false,
                 currentUserFirstName: 'Лилия',
                 currentUserLastName:  'Полежаева',
                 _logout:              this._logout,
@@ -49,20 +49,19 @@ export default class App extends Component {
                 <Provider value = { this.state }>
                     <StatusBar />
 
-                    {!access &&
-                    <Switch>                        
-                        <Route
-                            path = '/login'
-                            render = { (props) => ( <Login _login = { this._login } { ...props } /> )}
-                        />
-                    </Switch>}
-
-                    {access &&
-                    <Switch>                        
-                        <Route component = { Feed } path = '/feed' />                    
-                        <Route component = { Profile } path = '/profile' />
-                        <Redirect to = '/login' />                        
-                    </Switch>}
+                    {!access
+                       ? <Switch>                        
+                            <Route
+                                path = '/login'
+                                render = { (props) => ( <Login _login = { this._login } { ...props } /> )}
+                            />
+                        </Switch>
+                      : <Switch>                        
+                            <Route component = { Feed } path = '/feed' />                    
+                            <Route component = { Profile } path = '/profile' />
+                            <Redirect to = '/login' />                        
+                        </Switch>
+                    }
                 </Provider>
             </Catcher>
         );
